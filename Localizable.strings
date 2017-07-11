@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  whoisthere
+
+  Created by Efe Kocabas on 11/07/2017.
+  Copyright © 2017 Efe Kocabas. All rights reserved.
+*/
+
+"_alert_title" = "Warning";
+"_alert_ok" = "OK";
+"_save" = "Save";
+"_next" = "Next";
+"_register_title" = "Register";
+"_register_pick_color" = "Pick a Color";
+"_profile_title" = "Profile";
+
