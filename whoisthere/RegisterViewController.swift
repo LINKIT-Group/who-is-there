@@ -45,7 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
             }
             else {
                 
-                if let target = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as? MainController {
+                if let target = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
                     target.navigationItem.hidesBackButton = true;
                     self.navigationController?.pushViewController(target, animated: true)
                 }

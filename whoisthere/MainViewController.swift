@@ -9,21 +9,23 @@
 import CoreBluetooth
 import UIKit
 
-class MainController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CBPeripheralManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+class MainViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CBPeripheralManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     
-    var pManager = CBPeripheralManager()
-    var centralManager: CBCentralManager?
-    var visiblePeripherals = Array<Peripheral>()
-    var cachedPeripherals = Array<Peripheral>()
-    var cachedPNames = Dictionary<String, String>()
-    var timer = Timer()
     
     let reuseIdentifier = "MainCell"
     let columnCount = 2
     let margin : CGFloat = 10
+    var visibleDevices = Array<Device>()
+    var cachedDevices = Array<Device>()
+    var cachedPNames = Dictionary<String, String>()
+    var timer = Timer()
+    var selectedPeripheral : CBPeripheral?
     
-    let WHOS_THERE_SERVICE_UUID = CBUUID(string: "4DF91029-B356-463E-9F48-BAB077BF3EF5")
     
+    var pManager = CBPeripheralManager()
+    var centralManager: CBCentralManager? 
+    
+    var receiveQueue = [NSData]();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +66,8 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func clearPeripherals(){
         
-        visiblePeripherals = cachedPeripherals
-        cachedPeripherals.removeAll()
+        visibleDevices = cachedDevices
+        cachedDevices.removeAll()
         collectionView?.reloadData()
     }
     
@@ -82,16 +84,13 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let advertisementData = String(format: "%@|%d|%d", name, avatarId, colorId)
         
-        pManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[WHOS_THERE_SERVICE_UUID], CBAdvertisementDataLocalNameKey: advertisementData])
+        pManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[BLEConstants.SERVICE_UUID], CBAdvertisementDataLocalNameKey: advertisementData])
     }
     
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         
         if (peripheral.state == .poweredOn){
-            
-            let transferService = CBMutableService(type: WHOS_THERE_SERVICE_UUID, primary: true)
-            pManager.add(transferService)
             
             updateAdvertisingData()
         }
@@ -103,7 +102,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if (central.state == .poweredOn){
             
-            self.centralManager?.scanForPeripherals(withServices: [WHOS_THERE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
+            self.centralManager?.scanForPeripherals(withServices: [BLEConstants.SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
             
         }
         else {
@@ -113,8 +112,6 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
-        //NSLog("%@", advertisementData)
-        
         var peripheralName = cachedPNames[peripheral.identifier.description] ?? "unknown"
         
         if let advertisementName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
@@ -123,64 +120,27 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             cachedPNames[peripheral.identifier.description] = peripheralName
         }
         
-        let peripheral = Peripheral(item: peripheral, name: peripheralName)
+        let device = Device(peripheral: peripheral, name: peripheralName)
         
-        self.addOrUpdatePeripheralList(peripheral: peripheral, list: &visiblePeripherals)
-        self.addOrUpdatePeripheralList(peripheral: peripheral, list: &cachedPeripherals)
+        self.addOrUpdatePeripheralList(device: device, list: &visibleDevices)
+        self.addOrUpdatePeripheralList(device: device, list: &cachedDevices)
     }
     
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        
-        peripheral.delegate = self
-        peripheral.discoverServices(nil)
-        
-    }
-    
-    func peripheral( _ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        
-        for service in peripheral.services! {
+    func addOrUpdatePeripheralList(device: Device, list: inout Array<Device>) {
+
+        if !list.contains(where: { $0.peripheral.identifier == device.peripheral.identifier }) {
             
-            peripheral.discoverCharacteristics(nil, for: service)
-        }
-    }
-    
-    func peripheral(
-        _ peripheral: CBPeripheral,
-        didDiscoverCharacteristicsFor service: CBService,
-        error: Error?) {        for characteristic in service.characteristics! {
-        let characteristic = characteristic as CBCharacteristic
-        
-        let data = "efe cem kocabas".data(using: .utf8)
-        peripheral.writeValue(data!, for: characteristic, type: CBCharacteristicWriteType.withResponse)
-        
-        
-        }
-    }
-    
-    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        
-        let dataStr = String(data: requests[0].value!, encoding: String.Encoding.utf8) as String!
-        
-        AlertHelper.warn(delegate: self, message: dataStr!)
-    }
-    
-    
-    func addOrUpdatePeripheralList(peripheral: Peripheral, list: inout Array<Peripheral>) {
-        
-        
-        if !list.contains(where: { $0.item.identifier == peripheral.item.identifier }) {
-            
-            list.append(peripheral)
+            list.append(device)
             collectionView?.reloadData()
         }
-        else if list.contains(where: { $0.item.identifier == peripheral.item.identifier
-            && $0.name == "unknown"}) && peripheral.name != "unknown" {
+        else if list.contains(where: { $0.peripheral.identifier == device.peripheral.identifier
+            && $0.name == "unknown"}) && device.name != "unknown" {
             
             for index in 0..<list.count {
                 
-                if (list[index].item.identifier == peripheral.item.identifier) {
+                if (list[index].peripheral.identifier == device.peripheral.identifier) {
                     
-                    list[index].name = peripheral.name
+                    list[index].name = device.name
                     collectionView?.reloadData()
                     break
                 }
@@ -200,7 +160,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return visiblePeripherals.count
+        return visibleDevices.count
     }
     
     // make a cell for each cell index path
@@ -208,11 +168,9 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MainCell
         
-        let peripheral = visiblePeripherals[indexPath.row]
+        let device = visibleDevices[indexPath.row]
         
-        let advertisementData = peripheral.name.components(separatedBy: "|")
-        
-        
+        let advertisementData = device.name.components(separatedBy: "|")
         
         if (advertisementData.count > 1) {
             
@@ -221,7 +179,7 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             cell.backgroundColor = ColorList.colors[Int(advertisementData[2])!]
         }
         else {
-            cell.nameLabel?.text = peripheral.name
+            cell.nameLabel?.text = device.name
             cell.avatarImageView.image = UIImage(named: "avatar0")
             cell.backgroundColor = UIColor.gray
         }
@@ -233,12 +191,10 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let peripheral = visiblePeripherals[indexPath.row]
-        
-        AlertHelper.warn(delegate: self, message: peripheral.name)
-        
-        //centralManager?.connect(peripheral.item, options: nil)
-        
+        let chatViewController = ChatViewController()
+        chatViewController.deviceUUID = visibleDevices[indexPath.row].peripheral.identifier
+        chatViewController.deviceAttributes = visibleDevices[indexPath.row].name
+        self.navigationController?.pushViewController(chatViewController, animated: true)
     }
     
     

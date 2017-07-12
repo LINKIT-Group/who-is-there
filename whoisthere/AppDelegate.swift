@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (hasProperData) {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "MainController") as! MainController
+            let viewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
             let nav:UINavigationController = UINavigationController(rootViewController: viewController);
             window?.rootViewController = nav
             window?.makeKeyAndVisible()

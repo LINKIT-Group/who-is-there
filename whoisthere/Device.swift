@@ -9,15 +9,14 @@
 import Foundation
 import CoreBluetooth
 
-struct Peripheral {
+struct Device {
     
-    var item : CBPeripheral
+    var peripheral : CBPeripheral
     var name : String
+    var messages = Array<String>()
     
-    init(item: CBPeripheral, name:String) {
-        self.item = item
+    init(peripheral: CBPeripheral, name:String) {
+        self.peripheral = peripheral
         self.name = name
     }
-    
-    
 }
