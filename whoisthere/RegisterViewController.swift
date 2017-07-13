@@ -19,7 +19,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func nextButtonClick(_ sender: Any) {
         
+        
         var userData = UserData()
+        let isUpdateScreen = userData.hasAllDataFilled
         let name : String = nameTextField.text ?? ""
         
         if (userData.avatarId == 0) {
@@ -35,7 +37,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
             userData.name = name
             userData.save()
             
-            if (userData.hasAllDataFilled) {
+            if (isUpdateScreen) {
                 
                 self.navigationController?.popViewController(animated: true)
             }

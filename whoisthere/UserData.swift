@@ -22,11 +22,12 @@ struct UserData {
     
     public init(){
         
-        let dictionary = UserDefaults.standard.dictionary(forKey: userDataKey)!
-        
-        name = dictionary["name"] as? String ?? ""
-        avatarId = dictionary["avatarId"] as? Int ?? 0
-        colorId = dictionary["colorId"] as? Int ?? 0
+        if let dictionary = UserDefaults.standard.dictionary(forKey: userDataKey) {
+            
+            name = dictionary["name"] as? String ?? ""
+            avatarId = dictionary["avatarId"] as? Int ?? 0
+            colorId = dictionary["colorId"] as? Int ?? 0
+        }
     }
     
     public func save() {

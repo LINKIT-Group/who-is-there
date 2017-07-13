@@ -10,13 +10,14 @@
 		4E08FF771F1395BC00778FE7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF711F1395BC00778FE7 /* RegisterViewController.swift */; };
 		4E08FF841F13A0F500778FE7 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF7E1F13A0F500778FE7 /* AvatarPickerViewController.swift */; };
 		4E08FF871F13AFF300778FE7 /* AvatarPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF861F13AFF300778FE7 /* AvatarPickerCell.swift */; };
-		4E08FF891F13B97F00778FE7 /* UserDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */; };
 		4E4640261F13C1B600C8F94C /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4640251F13C1B600C8F94C /* ColorPickerViewController.swift */; };
 		4E4640291F13CC4A00C8F94C /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4640281F13CC4A00C8F94C /* AlertHelper.swift */; };
-		4E5B29421F13E64F00BF6CDA /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29411F13E64F00BF6CDA /* ColorList.swift */; };
+		4E5B29421F13E64F00BF6CDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29411F13E64F00BF6CDA /* Constants.swift */; };
 		4E5B29471F14BB0100BF6CDA /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29461F14BB0100BF6CDA /* MainCell.swift */; };
 		4E7A06911F14F00200888F8D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A06901F14F00200888F8D /* Localizable.strings */; };
 		4E7A06941F14F0BA00888F8D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06931F14F0BA00888F8D /* StringExtension.swift */; };
+		4E7A06A91F175BE600888F8D /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06A81F175BE600888F8D /* ViewHelper.swift */; };
+		4E7A06AB1F17683400888F8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06AA1F17683400888F8D /* UserData.swift */; };
 		4EC2D1051F0D0E5200E51020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2D1041F0D0E5200E51020 /* AppDelegate.swift */; };
 		4EC2D1071F0D0E5200E51020 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2D1061F0D0E5200E51020 /* MainController.swift */; };
 		4EC2D10A1F0D0E5200E51020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC2D1081F0D0E5200E51020 /* Main.storyboard */; };
@@ -49,13 +50,14 @@
 		4E08FF711F1395BC00778FE7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4E08FF7E1F13A0F500778FE7 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		4E08FF861F13AFF300778FE7 /* AvatarPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarPickerCell.swift; sourceTree = "<group>"; };
-		4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataKeys.swift; sourceTree = "<group>"; };
 		4E4640251F13C1B600C8F94C /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		4E4640281F13CC4A00C8F94C /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
-		4E5B29411F13E64F00BF6CDA /* ColorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorList.swift; sourceTree = "<group>"; };
+		4E5B29411F13E64F00BF6CDA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E5B29461F14BB0100BF6CDA /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		4E7A06901F14F00200888F8D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../Localizable.strings; sourceTree = "<group>"; };
 		4E7A06931F14F0BA00888F8D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		4E7A06A81F175BE600888F8D /* ViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		4E7A06AA1F17683400888F8D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4EC2D1011F0D0E5200E51020 /* whoisthere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whoisthere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC2D1041F0D0E5200E51020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EC2D1061F0D0E5200E51020 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -122,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				4EC2D1351F0E53BA00E51020 /* Peripheral.swift */,
-				4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */,
-				4E5B29411F13E64F00BF6CDA /* ColorList.swift */,
+				4E5B29411F13E64F00BF6CDA /* Constants.swift */,
+				4E7A06AA1F17683400888F8D /* UserData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4E4640281F13CC4A00C8F94C /* AlertHelper.swift */,
+				4E7A06A81F175BE600888F8D /* ViewHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -392,17 +395,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC2D1071F0D0E5200E51020 /* MainController.swift in Sources */,
-				4E5B29421F13E64F00BF6CDA /* ColorList.swift in Sources */,
+				4E5B29421F13E64F00BF6CDA /* Constants.swift in Sources */,
+				4E7A06AB1F17683400888F8D /* UserData.swift in Sources */,
 				4E5B29471F14BB0100BF6CDA /* MainCell.swift in Sources */,
 				4E08FF771F1395BC00778FE7 /* RegisterViewController.swift in Sources */,
 				4EC2D1361F0E53BA00E51020 /* Peripheral.swift in Sources */,
 				4E08FF871F13AFF300778FE7 /* AvatarPickerCell.swift in Sources */,
+				4E7A06A91F175BE600888F8D /* ViewHelper.swift in Sources */,
 				4EC2D1051F0D0E5200E51020 /* AppDelegate.swift in Sources */,
 				4E08FF841F13A0F500778FE7 /* AvatarPickerViewController.swift in Sources */,
 				4E7A06941F14F0BA00888F8D /* StringExtension.swift in Sources */,
 				4E4640261F13C1B600C8F94C /* ColorPickerViewController.swift in Sources */,
 				4E4640291F13CC4A00C8F94C /* AlertHelper.swift in Sources */,
-				4E08FF891F13B97F00778FE7 /* UserDataKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

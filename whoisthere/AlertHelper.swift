@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class AlertHelper {
+class AlertHelper {
     
     class func warn(delegate: UIViewController, message: String) {
         
