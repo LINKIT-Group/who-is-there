@@ -10,10 +10,9 @@
 		4E08FF771F1395BC00778FE7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF711F1395BC00778FE7 /* RegisterViewController.swift */; };
 		4E08FF841F13A0F500778FE7 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF7E1F13A0F500778FE7 /* AvatarPickerViewController.swift */; };
 		4E08FF871F13AFF300778FE7 /* AvatarPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF861F13AFF300778FE7 /* AvatarPickerCell.swift */; };
-		4E08FF891F13B97F00778FE7 /* UserDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */; };
 		4E4640261F13C1B600C8F94C /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4640251F13C1B600C8F94C /* ColorPickerViewController.swift */; };
 		4E4640291F13CC4A00C8F94C /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4640281F13CC4A00C8F94C /* AlertHelper.swift */; };
-		4E5B29421F13E64F00BF6CDA /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29411F13E64F00BF6CDA /* ColorList.swift */; };
+		4E5B29421F13E64F00BF6CDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29411F13E64F00BF6CDA /* Constants.swift */; };
 		4E5B29471F14BB0100BF6CDA /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B29461F14BB0100BF6CDA /* MainCell.swift */; };
 		4E7A06911F14F00200888F8D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A06901F14F00200888F8D /* Localizable.strings */; };
 		4E7A06941F14F0BA00888F8D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06931F14F0BA00888F8D /* StringExtension.swift */; };
@@ -21,9 +20,10 @@
 		4E7A06981F160E0A00888F8D /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A06961F160E0A00888F8D /* ChatViewController.xib */; };
 		4E7A069E1F161A7A00888F8D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A069C1F161A7A00888F8D /* ChatCell.swift */; };
 		4E7A069F1F161A7A00888F8D /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A069D1F161A7A00888F8D /* ChatCell.xib */; };
-		4E7A06A21F16481600888F8D /* BLEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06A11F16481600888F8D /* BLEConstants.swift */; };
 		4E7A06A41F164D9E00888F8D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06A31F164D9E00888F8D /* Message.swift */; };
 		4E7A06A71F165C8B00888F8D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06A61F165C8B00888F8D /* PaddingLabel.swift */; };
+		4E7A06A91F175BE600888F8D /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06A81F175BE600888F8D /* ViewHelper.swift */; };
+		4E7A06AB1F17683400888F8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A06AA1F17683400888F8D /* UserData.swift */; };
 		4EC2D1051F0D0E5200E51020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2D1041F0D0E5200E51020 /* AppDelegate.swift */; };
 		4EC2D1071F0D0E5200E51020 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2D1061F0D0E5200E51020 /* MainViewController.swift */; };
 		4EC2D10A1F0D0E5200E51020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC2D1081F0D0E5200E51020 /* Main.storyboard */; };
@@ -56,10 +56,9 @@
 		4E08FF711F1395BC00778FE7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4E08FF7E1F13A0F500778FE7 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		4E08FF861F13AFF300778FE7 /* AvatarPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarPickerCell.swift; sourceTree = "<group>"; };
-		4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataKeys.swift; sourceTree = "<group>"; };
 		4E4640251F13C1B600C8F94C /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		4E4640281F13CC4A00C8F94C /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
-		4E5B29411F13E64F00BF6CDA /* ColorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorList.swift; sourceTree = "<group>"; };
+		4E5B29411F13E64F00BF6CDA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E5B29461F14BB0100BF6CDA /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		4E7A06901F14F00200888F8D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../Localizable.strings; sourceTree = "<group>"; };
 		4E7A06931F14F0BA00888F8D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -67,9 +66,10 @@
 		4E7A06961F160E0A00888F8D /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatViewController.xib; path = Chat/ChatViewController.xib; sourceTree = "<group>"; };
 		4E7A069C1F161A7A00888F8D /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		4E7A069D1F161A7A00888F8D /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
-		4E7A06A11F16481600888F8D /* BLEConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEConstants.swift; sourceTree = "<group>"; };
 		4E7A06A31F164D9E00888F8D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4E7A06A61F165C8B00888F8D /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		4E7A06A81F175BE600888F8D /* ViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		4E7A06AA1F17683400888F8D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4EC2D1011F0D0E5200E51020 /* whoisthere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whoisthere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC2D1041F0D0E5200E51020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EC2D1061F0D0E5200E51020 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -135,8 +135,9 @@
 		4E08FF6A1F13904400778FE7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4EC2D1351F0E53BA00E51020 /* Device.swift */,
 				4E7A06A31F164D9E00888F8D /* Message.swift */,
+				4EC2D1351F0E53BA00E51020 /* Device.swift */,
+				4E7A06AA1F17683400888F8D /* UserData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -182,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				4E4640281F13CC4A00C8F94C /* AlertHelper.swift */,
+				4E7A06A81F175BE600888F8D /* ViewHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -217,9 +219,7 @@
 		4E7A06A01F1647FD00888F8D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				4E08FF881F13B97F00778FE7 /* UserDataKeys.swift */,
-				4E5B29411F13E64F00BF6CDA /* ColorList.swift */,
-				4E7A06A11F16481600888F8D /* BLEConstants.swift */,
+				4E5B29411F13E64F00BF6CDA /* Constants.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -439,12 +439,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC2D1071F0D0E5200E51020 /* MainViewController.swift in Sources */,
-				4E5B29421F13E64F00BF6CDA /* ColorList.swift in Sources */,
+				4E5B29421F13E64F00BF6CDA /* Constants.swift in Sources */,
+				4E7A06AB1F17683400888F8D /* UserData.swift in Sources */,
 				4E5B29471F14BB0100BF6CDA /* MainCell.swift in Sources */,
-				4E7A06A21F16481600888F8D /* BLEConstants.swift in Sources */,
 				4E08FF771F1395BC00778FE7 /* RegisterViewController.swift in Sources */,
 				4EC2D1361F0E53BA00E51020 /* Device.swift in Sources */,
 				4E08FF871F13AFF300778FE7 /* AvatarPickerCell.swift in Sources */,
+				4E7A06A91F175BE600888F8D /* ViewHelper.swift in Sources */,
 				4EC2D1051F0D0E5200E51020 /* AppDelegate.swift in Sources */,
 				4E08FF841F13A0F500778FE7 /* AvatarPickerViewController.swift in Sources */,
 				4E7A06941F14F0BA00888F8D /* StringExtension.swift in Sources */,
@@ -454,7 +455,6 @@
 				4E7A069E1F161A7A00888F8D /* ChatCell.swift in Sources */,
 				4E7A06A41F164D9E00888F8D /* Message.swift in Sources */,
 				4E4640291F13CC4A00C8F94C /* AlertHelper.swift in Sources */,
-				4E08FF891F13B97F00778FE7 /* UserDataKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

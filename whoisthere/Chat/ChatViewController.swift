@@ -54,7 +54,7 @@ class ChatViewController: UIViewController {
         if (deviceData.count > 2) {
             
             self.navigationItem.title = deviceData[0]
-            tableView.backgroundColor = ColorList.colors[Int(deviceData[2])!]
+            tableView.backgroundColor = Constants.colors[Int(deviceData[2])!]
         }
         
             
@@ -111,21 +111,17 @@ class ChatViewController: UIViewController {
             peripheralManager.stopAdvertising()
         }
         
-        let defaults = UserDefaults.standard
-        let avatarId = defaults.integer(forKey: UserDataKeys.avatarId)
-        let colorId = defaults.integer(forKey: UserDataKeys.colorId)
-        let name = defaults.string(forKey: UserDataKeys.name) ?? ""
+        let userData = UserData()
+        let advertisementData = String(format: "%@|%d|%d", userData.name, userData.avatarId, userData.colorId)
         
-        let advertisementData = String(format: "%@|%d|%d", name, avatarId, colorId)
-        
-        peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[BLEConstants.SERVICE_UUID], CBAdvertisementDataLocalNameKey: advertisementData])
+        peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[Constants.SERVICE_UUID], CBAdvertisementDataLocalNameKey: advertisementData])
     }
     
     
     func initService() {
         
-        let serialService = CBMutableService(type: BLEConstants.SERVICE_UUID, primary: true)
-        let rx = CBMutableCharacteristic(type: BLEConstants.RX_UUID, properties: BLEConstants.RX_PROPERTIES, value: nil, permissions: BLEConstants.RX_PERMISSIONS)
+        let serialService = CBMutableService(type: Constants.SERVICE_UUID, primary: true)
+        let rx = CBMutableCharacteristic(type: Constants.RX_UUID, properties: Constants.RX_PROPERTIES, value: nil, permissions: Constants.RX_PERMISSIONS)
         serialService.characteristics = [rx]
         
         peripheralManager.add(serialService)
@@ -145,7 +141,7 @@ extension ChatViewController : CBCentralManagerDelegate {
         
         if (central.state == .poweredOn){
             
-            self.centralManager?.scanForPeripherals(withServices: [BLEConstants.SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
+            self.centralManager?.scanForPeripherals(withServices: [Constants.SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
             
         }
     }
@@ -185,7 +181,7 @@ extension ChatViewController : CBPeripheralDelegate {
         for characteristic in service.characteristics! {
             
             let characteristic = characteristic as CBCharacteristic
-            if (characteristic.uuid.isEqual(BLEConstants.RX_UUID)) {
+            if (characteristic.uuid.isEqual(Constants.RX_UUID)) {
                 if let messageText = messageTextField.text {
                     let data = messageText.data(using: .utf8)
                     peripheral.writeValue(data!, for: characteristic, type: CBCharacteristicWriteType.withResponse)

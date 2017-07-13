@@ -8,31 +8,56 @@
 
 import UIKit
 
-class AvatarPickerViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
+class AvatarPickerViewController: UICollectionViewController
 {
-    let reuseIdentifier = "AvatarPickerCell"
+    let avatarCellReuseIdentifier = "AvatarPickerCell"
     let columnCount = 3
     let margin : CGFloat = 10
+    let avatarCount = 8
     
     
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        flowLayout.minimumInteritemSpacing = margin
-        flowLayout.minimumLineSpacing = margin
-        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
-        flowLayout.estimatedItemSize = flowLayout.itemSize // CGSize(width: 50, height: 50)
-        
-        
+        ViewHelper.setCollectionViewLayout(collectionView: collectionView, margin: margin)
+    }
+}
+
+
+// MARK: - UICollectionViewDataSource protocol
+extension AvatarPickerViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return avatarCount
     }
     
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: avatarCellReuseIdentifier, for: indexPath as IndexPath) as! AvatarPickerCell
+        
+        cell.avatarImageView.image = UIImage(named: String(format: "%@%d", Constants.kAvatarImagePrefix, indexPath.item + 1))
+        
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate protocol
+extension AvatarPickerViewController {
     
-    // MARK: - UICollectionViewDataSource protocol
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var userData =  UserData()
+        userData.avatarId = indexPath.item + 1
+        userData.save()
+        
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+}
+
+extension AvatarPickerViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -41,28 +66,4 @@ class AvatarPickerViewController: UICollectionViewController, UICollectionViewDe
         return CGSize(width: itemWidth, height: itemWidth)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
-    }
-    
-    // make a cell for each cell index path
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! AvatarPickerCell
-        
-        cell.avatarImageView.image = UIImage(named: String(format: "avatar%d", indexPath.item + 1))
-        
-        return cell
-    }
-    
-    // MARK: - UICollectionViewDelegate protocol
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let defaults = UserDefaults.standard
-        defaults.set(indexPath.item + 1, forKey: UserDataKeys.avatarId)
-        
-        self.navigationController?.popViewController(animated: true)
-        
-    }
 }
