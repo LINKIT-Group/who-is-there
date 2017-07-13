@@ -8,6 +8,8 @@
 
 "_alert_title" = "Warning";
 "_alert_ok" = "OK";
+"_alert_choose_avatar"= "Please choose an avatar";
+"_alert_enter_name"= "Please enter your name";
 "_save" = "Save";
 "_next" = "Next";
 "_register_title" = "Register";

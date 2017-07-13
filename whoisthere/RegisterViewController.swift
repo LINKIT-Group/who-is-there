@@ -19,18 +19,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func nextButtonClick(_ sender: Any) {
         
-        
         var userData = UserData()
         let isUpdateScreen = userData.hasAllDataFilled
         let name : String = nameTextField.text ?? ""
         
         if (userData.avatarId == 0) {
             
-            AlertHelper.warn(delegate: self, message: "Please choose an avatar")
+            AlertHelper.warn(delegate: self, message: "alert_choose_avatar".localized)
         }
         else if (name.isEmpty) {
             
-            AlertHelper.warn(delegate: self, message: "Please enter your name")
+            AlertHelper.warn(delegate: self, message: "alert_enter_name".localized)
         }
         else {
             
