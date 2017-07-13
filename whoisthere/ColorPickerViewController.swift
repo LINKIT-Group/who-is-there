@@ -14,20 +14,11 @@ class ColorPickerViewController: UICollectionViewController, UICollectionViewDel
     let columnCount = 3
     let margin : CGFloat = 10
     
-    
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        flowLayout.minimumInteritemSpacing = margin
-        flowLayout.minimumLineSpacing = margin
-        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
-        flowLayout.estimatedItemSize = flowLayout.itemSize // CGSize(width: 50, height: 50)
-        
-        
+        ViewHelper.setCollectionViewLayout(collectionView: collectionView, margin: margin)
     }
     
     
