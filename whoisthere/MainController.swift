@@ -217,8 +217,8 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if (advertisementData.count > 1) {
             
             cell.nameLabel?.text = advertisementData[0]
-            cell.avatarImageView.image = UIImage(named: String(format: "avatar%@", advertisementData[1]))
-            cell.backgroundColor = ColorList.colors[Int(advertisementData[2])!]
+            cell.avatarImageView.image = UIImage(named: String(format: "%@%@", Constants.kAvatarImagePrefix, advertisementData[1]))
+            cell.backgroundColor = Constants.colors[Int(advertisementData[2])!]
         }
         else {
             cell.nameLabel?.text = peripheral.name

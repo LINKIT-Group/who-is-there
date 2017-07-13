@@ -42,7 +42,7 @@ class ColorPickerViewController: UICollectionViewController, UICollectionViewDel
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ColorList.colors.count
+        return Constants.colors.count
     }
     
     // make a cell for each cell index path
@@ -50,7 +50,7 @@ class ColorPickerViewController: UICollectionViewController, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath)
         
-        cell.backgroundColor = ColorList.colors[indexPath.item]
+        cell.backgroundColor = Constants.colors[indexPath.item]
         
         return cell
     }

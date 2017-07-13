@@ -50,7 +50,7 @@ class AvatarPickerViewController: UICollectionViewController, UICollectionViewDe
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! AvatarPickerCell
         
-        cell.avatarImageView.image = UIImage(named: String(format: "avatar%d", indexPath.item + 1))
+        cell.avatarImageView.image = UIImage(named: String(format: "%@%d", Constants.kAvatarImagePrefix, indexPath.item + 1))
         
         return cell
     }
