@@ -16,16 +16,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var pickColorButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var isUpdateScreen : Bool = false
-    
     
     @IBAction func nextButtonClick(_ sender: Any) {
         
-        let defaults = UserDefaults.standard
-        let avatarId = defaults.integer(forKey: UserDataKeys.avatarId)
+        var userData = UserData()
         let name : String = nameTextField.text ?? ""
         
-        if (avatarId == 0) {
+        if (userData.avatarId == 0) {
             
             AlertHelper.warn(delegate: self, message: "Please choose an avatar")
         }
@@ -35,11 +32,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         }
         else {
             
-            let defaults = UserDefaults.standard
-            defaults.set(name, forKey: UserDataKeys.name)
-            defaults.set(true, forKey: UserDataKeys.hasProperData)
+            userData.name = name
+            userData.save()
             
-            if (isUpdateScreen) {
+            if (userData.hasAllDataFilled) {
                 
                 self.navigationController?.popViewController(animated: true)
             }
@@ -55,7 +51,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     
     // MARK: View lifecycle
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -72,21 +67,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     func initData() {
         
-        isUpdateScreen = UserDefaults.standard.bool(forKey: UserDataKeys.hasProperData)
+        let userData = UserData()
         
-        self.navigationItem.title = isUpdateScreen ? "_register_title".localized : "_profile_title".localized
+        self.navigationItem.title = userData.hasAllDataFilled ? "_register_title".localized : "_profile_title".localized
         
-        let buttonTitle = isUpdateScreen ? "_save".localized : "_next".localized
+        let buttonTitle = userData.hasAllDataFilled ? "_save".localized : "_next".localized
         nextButton.setTitle(buttonTitle, for: .normal)
         
-        let defaults = UserDefaults.standard
-        let avatarId = defaults.integer(forKey: UserDataKeys.avatarId)
-        avatarButton.setImage(UIImage(named: String(format: "avatar%d", avatarId)), for: UIControlState.normal)
+        avatarButton.setImage(UIImage(named: String(format: "%@%d", Constants.kAvatarImagePrefix, userData.avatarId)), for: UIControlState.normal)
+        self.view.backgroundColor = Constants.colors[userData.colorId]
         
-        let colorId = defaults.integer(forKey: UserDataKeys.colorId)
-        self.view.backgroundColor = ColorList.colors[colorId]
-        
-        nameTextField.text = defaults.string(forKey: UserDataKeys.name)
+        nameTextField.text = userData.name
     }
     
     override func viewWillAppear(_ animated: Bool) {

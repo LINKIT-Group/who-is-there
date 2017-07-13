@@ -75,12 +75,8 @@ class MainController: UICollectionViewController, UICollectionViewDelegateFlowLa
             pManager.stopAdvertising()
         }
         
-        let defaults = UserDefaults.standard
-        let avatarId = defaults.integer(forKey: UserDataKeys.avatarId)
-        let colorId = defaults.integer(forKey: UserDataKeys.colorId)
-        let name = defaults.string(forKey: UserDataKeys.name) ?? ""
-        
-        let advertisementData = String(format: "%@|%d|%d", name, avatarId, colorId)
+        let userData =  UserData()
+        let advertisementData = String(format: "%@|%d|%d", userData.name, userData.avatarId, userData.colorId)
         
         pManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey:[WHOS_THERE_SERVICE_UUID], CBAdvertisementDataLocalNameKey: advertisementData])
     }

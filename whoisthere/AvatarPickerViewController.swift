@@ -59,8 +59,9 @@ class AvatarPickerViewController: UICollectionViewController, UICollectionViewDe
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let defaults = UserDefaults.standard
-        defaults.set(indexPath.item + 1, forKey: UserDataKeys.avatarId)
+        var userData =  UserData()
+        userData.avatarId = indexPath.item + 1
+        userData.save()
         
         self.navigationController?.popViewController(animated: true)
         

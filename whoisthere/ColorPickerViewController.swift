@@ -59,9 +59,9 @@ class ColorPickerViewController: UICollectionViewController, UICollectionViewDel
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let defaults = UserDefaults.standard
-        defaults.set(indexPath.item, forKey: UserDataKeys.colorId)
-        
+        var userData =  UserData()
+        userData.colorId = indexPath.item
+        userData.save()
         self.navigationController?.popViewController(animated: true)
         
     }
