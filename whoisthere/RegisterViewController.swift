@@ -16,26 +16,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var pickColorButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var isUpdateScreen : Bool = false
+    
     
     @IBAction func nextButtonClick(_ sender: Any) {
         
-        
-        var userData = UserData()
-        let isUpdateScreen = userData.hasAllDataFilled
-        let name : String = nameTextField.text ?? ""
+        let userData = UserData()
+        saveName()
         
         if (userData.avatarId == 0) {
             
-            AlertHelper.warn(delegate: self, message: "Please choose an avatar")
+            AlertHelper.warn(delegate: self, message: "_alert_choose_avatar".localized)
         }
-        else if (name.isEmpty) {
+        else if (userData.name.isEmpty) {
             
-            AlertHelper.warn(delegate: self, message: "Please enter your name")
+            AlertHelper.warn(delegate: self, message: "_alert_enter_name".localized)
         }
         else {
-            
-            userData.name = name
-            userData.save()
             
             if (isUpdateScreen) {
                 
@@ -43,7 +40,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
             }
             else {
                 
-                if let target = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as? MainController {
+                if let target = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
                     target.navigationItem.hidesBackButton = true;
                     self.navigationController?.pushViewController(target, animated: true)
                 }
@@ -56,8 +53,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        let userData = UserData()
+        isUpdateScreen = userData.hasAllDataFilled
         setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        nameTextField.resignFirstResponder()
+        saveName()
+    }
+    
+    func saveName() {
+        
+        var userData = UserData()
+        let name : String = nameTextField.text ?? ""
+        userData.name = name
+        userData.save()
     }
     
     func setupUI() {
