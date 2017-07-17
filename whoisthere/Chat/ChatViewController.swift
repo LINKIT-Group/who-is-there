@@ -36,6 +36,9 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 68.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.register(UINib(nibName: cellDefinition, bundle: nil), forCellReuseIdentifier: cellDefinition)
         
         centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main)
@@ -204,10 +207,6 @@ extension ChatViewController : CBPeripheralManagerDelegate {
             initService()
             updateAdvertisingData()
         }
-        else {
-            // do something like alert the user that ble is not on
-        }
-        
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
@@ -252,15 +251,24 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource {
             cell.receivedMessage.isHidden = true
             cell.sentMessage.isHidden = false
             cell.sentMessage.text = message.text
+            cell.sentMessage.sizeToFit()
         }
         else {
             
             cell.sentMessage.isHidden = true
             cell.receivedMessage.isHidden = false
             cell.receivedMessage.text = message.text
+            cell.receivedMessage.sizeToFit()
         }
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableViewAutomaticDimension
+    }
+     
+
     
 }

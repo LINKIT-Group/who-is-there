@@ -154,12 +154,6 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MainViewController : CBPeripheralDelegate {
-    
-    
-}
-
-
 extension MainViewController : CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
